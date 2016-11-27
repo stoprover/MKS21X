@@ -3,3 +3,5 @@ tomato
 push
 pull
 clone
+add
+aplles are edible
