@@ -33,11 +33,11 @@ public class Book {
     public String toString (){
 	return "Title: " + titleGet() + "\nAuthor: " + authorGet() + "\nISBN: " + ISBNGet() ;
     }
-    public static void main (String[]args){
+    /**public static void main (String[]args){
 	Book a = new Book();
 	Book b = new Book("Niccolo Machiavelli", "The Prince", "potato24");
 	System.out.println(a.toString());
 	System.out.println(b.toString());
-    }
+	}*/
 }
 	
