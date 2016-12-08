@@ -15,8 +15,8 @@ public class SuperArrayIterator implements Iterator<String>{
 	    return whichOne.get(element - 1);
 	}
 	else{
-	    //throw new NoSuchElementException();
-	    return "There are no more elements";
+	    throw new NoSuchElementException();
+	    //return "There are no more elements";
 	}
     }
     public void remove(){
