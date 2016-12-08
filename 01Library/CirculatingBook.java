@@ -1,7 +1,6 @@
 public class CirculatingBook extends LibraryBook{
     private String currentHolder;
     private String dueDate;
-    private boolean DEBUG = true;
     public CirculatingBook(String author, String title, String ISBN, String callNumber){
 	super(author, title, ISBN, callNumber);
 	currentHolderSet("");
@@ -20,30 +19,22 @@ public class CirculatingBook extends LibraryBook{
 	return this.dueDate;
     }
     public void checkout(String patron, String due){
-	currentHolderSet(patron);
-	dueDateSet(due);
+	System.out.println("checkout: Fix this entire method");
     }
     public void returned(){
-	currentHolderSet("");
-	dueDateSet("");
+	System.out.println("returned: Fix this entire method");
     }
     public String circulationStatus(){
-	if (currentHolderGet().equals("") && dueDateGet().equals("")){
-	    return "book available on shelves";
-	}
-	else{
-	    return currentHolderGet() + dueDateGet();
-	}
+	return "circulationStatus: Fix this entire method";
     }
     public String toString(){
 	return super.toString() + "\nCurrent Holder: " + currentHolderGet() + "\nDue Date: " + dueDateGet();
     }
-    /**public static void main (String[]args){
+    public static void main (String[]args){
 	CirculatingBook cb = new CirculatingBook("Mach", "Prince", "top24", "97");
 	System.out.println(cb.toString());
 	cb.checkout("John", "now");
-	System.out.println(cb.circulationStatus());
 	cb.returned();
 	System.out.println(cb.circulationStatus());
-	}*/
+    }
 }

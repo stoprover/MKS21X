@@ -1,6 +1,5 @@
 public class ReferenceBook extends LibraryBook{
     private String collection;
-    private boolean DEBUG = false;
     public ReferenceBook(String author, String title, String ISBN, String callNumber, String coll){
 	super(author, title, ISBN, callNumber);
 	collectionSet(coll);
@@ -12,16 +11,10 @@ public class ReferenceBook extends LibraryBook{
 	return this.collection;
     }
     public void checkout(String patron, String due){
-	if (DEBUG){
-	    System.out.println("DEBUG: cannot check out a reference book" + " That being said, this needs to be an exception rather than a simple print statement, so fix it.");
-	}
-	throw new UnsupportedOperationException("cannot check out a reference book");
+	System.out.println("cannot check out a reference book" + " That being said, this needs to be an exception rather than a simple print statement, so fix it.");
     }
     public void returned(){
-	if (DEBUG){
-	    System.out.println("reference book could not have been checked out -- return impossible" + "That being said, this needs to be an exception rather than a simple print statement, so fix it.");
-	}
-	throw new UnsupportedOperationException("reference book could not have been checked out -- return impossible");
+	System.out.println("reference book could not have been checked out -- return impossible" + "That being said, this needs to be an exception rather than a simple print statement, so fix it.");
     }
     public String circulationStatus(){
 	return "non-circulating reference book";
@@ -29,11 +22,11 @@ public class ReferenceBook extends LibraryBook{
     public String toString(){
 	return super.toString() + "\nCollection: " + collectionGet();
     }
-    /**public static void main (String[]args){
+    public static void main (String[]args){
 	ReferenceBook rb = new ReferenceBook ("Mach", "Prince", "top24", "97", "crazy");
 	System.out.println(rb.toString());
         rb.checkout("John", "now");
-	rb.returned();
+        rb.returned();
 	System.out.println(rb.circulationStatus());
-	}*/
+    }
 }
