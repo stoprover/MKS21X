@@ -9,7 +9,8 @@ public class Barcode implements Comparable<Barcode>{
 	    //this should be an official exception, but just for now, print stuff
 	    System.out.println("zip is too long!!!");
 	}
-	//replace crazy symbols with number	 
+	//replace crazy symbols with number
+	//heloo
     //checkSum is a number or numbers used to validate other info. and i think checkdigit is just a variable for this???
 
 }
