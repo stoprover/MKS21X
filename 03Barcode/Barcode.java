@@ -1,90 +1,93 @@
 public class Barcode implements Comparable<Barcode>{
     private String _zip;
     private int _checkDigit;
-    public Barcode(String zip){
-	_zip = zip;
-	_checkDigit = 0;
+    public Barcode (String zip){
 	if (zip.length() != 5){
-	    throw new IllegalArgumentException ("The input is not the right length.");
+	    throw new IllegalArgumentException("The input is the wrong length.");
 	}
-	String formattedZip = "";
-	for (int i = 0; i < 5; i++){
-	    System.out.println(_zip.charAt(i));
-	    // System.out.println(_zip.charAt(i) == '0');
-	    if(_zip.charAt(i) == '0'){
-		formattedZip += "||:::";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '1'){
-		formattedZip += ":::||";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '2'){
-		formattedZip += "::|:|";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '3'){
-		formattedZip += "::||:";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '4'){
-		formattedZip += ":|::|";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '5'){
-		formattedZip += ":|:|:";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '6'){
-		formattedZip += ":||::";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '7'){
-		formattedZip += "|:::|";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '8'){
-		formattedZip += "|::|:";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    if(_zip.charAt(i) == '9'){
-		formattedZip += "|:|::";
-		System.out.println(formattedZip + " i:" + i);
-	    }
-	    /**if(_zip.charAt(i) != '0' || _zip.charAt(i) != '1' || _zip.charAt(i) != '2' || _zip.charAt(i) != '3' || _zip.charAt(i) != '4' || _zip.charAt(i) != '5' || _zip.charAt(i) != '6' || _zip.charAt(i) != '7' || _zip.charAt(i) != '8' || _zip.charAt(i) != '9') {
-		System.out.println(formattedZip  + " i:" + i);
-		throw new IllegalArgumentException ("The input has non-digits.");
-		}*/
-	    //fix the exception for if anything in _zip is a non-digit (its simple but eluding me rn, has to do w. if vs ifelse vs else type stuff)
+	if ((int)(zip.charAt(0)) < 48 || (int)(zip.charAt(0)) > 57 || (int)(zip.charAt(1)) < 48 || (int)(zip.charAt(1)) > 57 || (int)(zip.charAt(2)) < 48 || (int)(zip.charAt(2)) > 57 || (int)(zip.charAt(3)) < 48 || (int)(zip.charAt(3)) > 57 || (int)(zip.charAt(4)) < 48 || (int)(zip.charAt(4)) > 57){
+	    throw new IllegalArgumentException("The input must not contain non-digits.");
 	}
-	//System.out.println("ZIP:    " + _zip);
-	System.out.println("Relics of feudalism" + Integer.valueOf(_zip.charAt(0)));
-	System.out.println("Relics of feudalism" + Integer.valueOf(_zip.charAt(1)));
-	System.out.println("Relics of feudalism" + Integer.valueOf(_zip.charAt(2)));
-	System.out.println("Relics of feudalism" + Integer.valueOf(_zip.charAt(3)));
-	System.out.println("Relics of feudalism" + Integer.valueOf(_zip.charAt(4)));
-		    
-	_checkDigit = ((int)(_zip.charAt(0)) - 48*5 + (int)(_zip.charAt(1)) + (int)(_zip.charAt(2)) + (int)(_zip.charAt(3)) + (int)(_zip.charAt(4)))% 10 ;
-	_zip = formattedZip;
+	_zip = zip;
+	_checkDigit = checkSum();
     }
-    //public Barcode clone(){}
-    //private int checkSum(){}
-    public String toString(){
-	System.out.println("toString: this is unfinished, bc _checkDigit is an int rather than the weird symbols: fix this!!");
-	return "|" + _zip + _checkDigit + "|";
+    private int checkSum(){
+	return ((int)(_zip.charAt(0)) + (int)(_zip.charAt(1)) + (int)(_zip.charAt(2)) + (int)(_zip.charAt(3)) + (int)(_zip.charAt(4)) - 48*5) % 10;
+    }
+    public Barcode clone(){
+	Barcode a = new Barcode(_zip);
+	return a;
     }
     public int compareTo(Barcode other){
-	System.out.println("compareTo: this is unfinished!!");
+	System.out.println(other.toString().substring(1, 6));
+	//this uses toZip, so that must be written first, but when it is, the whole barcode must be toZipped (with a private thing for checkSum again and dropping guard rails).
+	//then compare the toZipped zip codes to produce answer as per usual
+	System.out.println("compareTo is uncompleted and must be finished!!!");
 	return 5;
     }
-    //replace digits with crazy symbols
-    //checkSum is a number or numbers used to validate other info. and i think checkdigit is just a variable for this???
+    public static String toCode(String zip){
+	String[]temp = new String[10];
+	String sum = "";
+	temp[0] = "||:::";
+	temp[1] = ":::||";
+	temp[2] = "::|:|";
+	temp[3] = "::||:";
+	temp[4] = ":|::|";
+	temp[5] = ":|:|:";
+	temp[6] = ":||::";
+	temp[7] = "|:::|";
+	temp[8] = "|::|:";
+	temp[9] = "|:|::";
+	for (int i = 0; i < zip.length(); i++){
+	    sum += temp[(int)(zip.charAt(i)) - 48];
+	}
+	return sum;
+    }
+    private String digitToCode(int digit){
+	String[]temp = new String[10];
+	String sum = "";
+	temp[0] = "||:::";
+	temp[1] = ":::||";
+	temp[2] = "::|:|";
+	temp[3] = "::||:";
+	temp[4] = ":|::|";
+	temp[5] = ":|:|:";
+	temp[6] = ":||::";
+	temp[7] = "|:::|";
+	temp[8] = "|::|:";
+	temp[9] = "|:|::";
+	sum = temp[digit];
+	return sum;
+    }
+    //idk how to write toZip without 10 if statements and an irritating for loop involving multiplying i by 5 (?)
+    //Also add exceptions to this
+    /**public static String toZip(String code){
+	codeZip = code.substring(1, 25);
+	//codeCheck = code.substring(26, 31);
+	String[]temp = new String[10];
+	temp[0] = "||:::";
+	temp[1] = ":::||";
+	temp[2] = "::|:|";
+	temp[3] = "::||:";
+	temp[4] = ":|::|";
+	temp[5] = ":|:|:";
+	temp[6] = ":||::";
+	temp[7] = "|:::|";
+	temp[8] = "|::|:";
+	temp[9] = "|:|::";*/
+    public String toString(){
+	return "|" + toCode(_zip) + digitToCode(_checkDigit) + "|";
+    }
     public static void main(String[]args){
 	Barcode a = new Barcode("08451");
+	Barcode b = new Barcode ("11218");
 	System.out.println(a.toString());
-	Barcode b = new Barcode ("12345");
 	System.out.println(b.toString());
+        System.out.println(toCode("777"));
+	System.out.println(a.clone());
+	System.out.println(a.compareTo(b));
+	//Barcode x = new Barcode ("29349872380948203948");
+	//Barcode y = new Barcode ("5");
+	//Barcode z = new Barcode ("343f4");
     }
-      
-
 }
