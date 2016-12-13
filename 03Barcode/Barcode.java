@@ -61,9 +61,15 @@ public class Barcode implements Comparable<Barcode>{
     }
     //idk how to write toZip without 10 if statements and an irritating for loop involving multiplying i by 5 (?)
     //Also add exceptions to this
-    /**public static String toZip(String code){
-	codeZip = code.substring(1, 25);
+    public static String toZip(String code){
+	//codeZip = code.substring(1, 25);
+	/**String sum = "";
+	for (int i = 1; i < 26; i += 5){
+	    if(code.substring(i, i+5).equals("||:::")){
+		sum += "0";
+	    }
 	//codeCheck = code.substring(26, 31);
+	*/
 	String[]temp = new String[10];
 	temp[0] = "||:::";
 	temp[1] = ":::||";
@@ -74,7 +80,26 @@ public class Barcode implements Comparable<Barcode>{
 	temp[6] = ":||::";
 	temp[7] = "|:::|";
 	temp[8] = "|::|:";
-	temp[9] = "|:|::";*/
+	temp[9] = "|:|::";
+	//for(something or other, may possibly be two for loops, one for array and one for code){
+	String sum = "";
+	for (int cod = 1; cod < 26; cod += 5){
+	    for (int ary = 0; ary < temp.length; ary++){
+		if (temp[ary].equals(code.substring(cod, cod+5))){
+		    sum += ary;
+		}
+	    }
+	    //there may be an exception here for "oh what if this symbol isn't there
+	}
+	return sum;
+    }
+	/**try{
+sopln("sdfsdfsd\ninvalid guardrail")
+sopln(":|":|:|:||:||:|::|:|:|::")
+}catch(IllegalArgumentException e){
+e.printStackTrace();
+}
+*/
     public String toString(){
 	return "|" + toCode(_zip) + digitToCode(_checkDigit) + "|";
     }
@@ -86,6 +111,7 @@ public class Barcode implements Comparable<Barcode>{
         System.out.println(toCode("777"));
 	System.out.println(a.clone());
 	System.out.println(a.compareTo(b));
+	System.out.println("Bismarck" + toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
 	//Barcode x = new Barcode ("29349872380948203948");
 	//Barcode y = new Barcode ("5");
 	//Barcode z = new Barcode ("343f4");
