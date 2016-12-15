@@ -12,33 +12,49 @@ public class Sorts{
 		    indOfSSF = i;
 		}
 	    }
-	    data[indOfSSF]= data[m];//may be wrong
-	    data[m] = smallestSoFar;//may be wrong
-	    /**for (int j = 0; j < data.length; j++){
-		if (data[j] > smallestSoFar){
-		    data[indOfSSF] = data[j];
-		    data[j] = smallestSoFar;
-		    j = data.length;
-		}
-		}*/
+	    data[indOfSSF]= data[m];
+	    data[m] = smallestSoFar;
 	}
     }
     public static void insertionSort(int[]data){
-	int indWhereShould;//backwards inner loop
-	for (int i = 0; i < data.length - 1; i++){
-	    for (int j = i + 1; j < data.length; j++){
-		if (data[i] > data[j]){
-		    indWhereShould = j;
+	for (int nextUnsorted = 1; nextUnsorted < data.length; nextUnsorted++){
+	    //loop through everything right of nextUnsorted, find smallest, loop through everything left of nextUnsorted, find spot, move stuff over, add
+	    int smallestRNU = data[nextUnsorted];
+	    int placeOfRNU = nextUnsorted;
+	    for (int rightNU = nextUnsorted; rightNU < data.length; rightNU++){
+		if (data[rightNU] < smallestRNU){//maybe all this must be from right: change it if necessary
+		    smallestRNU = data[rightNU];
+		    placeOfRNU = rightNU;
 		}
-	/**for (int elLookingAt = 1; elLookingAt < data.length - 1; elLookingAt++){
-	    for (int i = elLookingAt + 1; i < 	    
-if (data[elLookingAt] > data[elLookingAt + 1]){
-		moved = data[elLookingAt + 1];
-		data[elLookingAt + 1] = data[elLookingAt];
-		data[elLookingAt] = moved;
+	    }
+	    int placeToInsert = 0;
+	    for (int i = 0; i < nextUnsorted; i++){
+		if (data[i] > smallestRNU){
+		    placeToInsert = i;
+		}
+		if (i == nextUnsorted - 1 && data[i] < smallestRNU){
+		    placeToInsert = nextUnsorted;
+		}
+	    }
+	    for (int j = placeOfRNU; j > placeToInsert; j--){
+		data[j] = data[j - 1];
+	    }
+	    data[placeToInsert] = smallestRNU;
+	}
+    }
+    public static String printArray (int[]data){
+	String sum = "[";
+	for (int i = 0; i < data.length; i++){
+	    sum += data[i];
+	    if (i == data.length - 1){
+		sum += "]";
+	    }
+	    else{
+		sum +=  ", ";
 	    }
 	}
-	}*/
+	return sum;
+    }
     public static void main(String[]args){
 	int[]ary = new int[5];
 	ary[0] = 64;
@@ -46,15 +62,17 @@ if (data[elLookingAt] > data[elLookingAt + 1]){
 	ary[2] = 12;
 	ary[3] = 22;
 	ary[4] = 11;//64, 25, 12, 22, 11;     25, 64, 12,22,11
-	selectionSort(ary);
-	System.out.println(ary[0] + " " + ary[1] + " " + ary[2] + " " + ary[3] + " " + ary[4]);
+	//selectionSort(ary);
+	insertionSort(ary);
+	System.out.println(printArray(ary));
 	int[]dairy = new int[4];
 	dairy[0] = 54;
 	dairy[1] = 1;
 	dairy[2] = 32;
 	dairy[3] = 15;
-	selectionSort(dairy);
-	System.out.println(dairy[0] + " " + dairy[1] + " " + dairy[2] + " " + dairy[3]);
+	//selectionSort(dairy);
+	insertionSort(dairy);
+	System.out.println(printArray(dairy));
 	System.out.println(name());
     }
 }
