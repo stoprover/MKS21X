@@ -42,6 +42,9 @@ public class Sorts{
 	    data[placeToInsert] = smallestRNU;
 	}
     }
+    public static void bubbleSort(int[]data){//loop through to second-to-last,compare data[counter] and data[counter + 1], swap if necessary. also make sure to have a swap variable, always set it back to zero whenever you start from the beginning again, and if its > 0, go through again; else, stop the swapping. furthemore, there should be a way to go back from last digits, (make the test for the data get smaller and smaller if the last ones are well-sorted and don't need to be swapped)since 5 and 8 are gucci, don't look at it again, instead look at 2 and 5.
+	//system.currentTimeMillis(), don't measure sort if wrong; is a thing that you should use!!!!!!!!!!!!!!!!!!!!  
+    }
     public static String printArray (int[]data){
 	String sum = "[";
 	for (int i = 0; i < data.length; i++){
