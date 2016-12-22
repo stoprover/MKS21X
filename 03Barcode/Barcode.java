@@ -95,10 +95,10 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	return sum.substring(0, 5);
     }
-<<<<<<< HEAD
+    //<<<<<<< HEAD
     //idk how to write toZip without 10 if statements and an irritating for loop involving multiplying i by 5 (?)
     //Also add exceptions to this
-    public static String toZip(String code){
+    /** public static String toZip(String code){
 	//codeZip = code.substring(1, 25);
 	/**String sum = "";
 	for (int i = 1; i < 26; i += 5){
@@ -107,7 +107,7 @@ public class Barcode implements Comparable<Barcode>{
 	    }
 	//codeCheck = code.substring(26, 31);
 	*/
-	String[]temp = new String[10];
+    /**String[]temp = new String[10];
 	temp[0] = "||:::";
 	temp[1] = ":::||";
 	temp[2] = "::|:|";
@@ -129,7 +129,7 @@ public class Barcode implements Comparable<Barcode>{
 	    //there may be an exception here for "oh what if this symbol isn't there
 	}
 	return sum;
-    }
+    }*/
 	/**try{
 sopln("sdfsdfsd\ninvalid guardrail")
 sopln(":|":|:|:||:||:|::|:|:|::")
@@ -137,8 +137,8 @@ sopln(":|":|:|:||:||:|::|:|:|::")
 e.printStackTrace();
 }
 */
-=======
->>>>>>> 24d25ca546ace02c85f562f1e854ae5b5444c0d6
+    //=======
+    //>>>>>>> 24d25ca546ace02c85f562f1e854ae5b5444c0d6
     public String toString(){
 	return _zip + checkSum(_zip) + " " + toCode(_zip);
     }
@@ -149,13 +149,13 @@ e.printStackTrace();
 	System.out.println(b.toString());
         System.out.println("toCode: " + toCode("08451"));
 	System.out.println(a.clone());
-<<<<<<< HEAD
+	//<<<<<<< HEAD
 	System.out.println(a.compareTo(b));
 	System.out.println("Bismarck" + toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
 	//Barcode x = new Barcode ("29349872380948203948");
 	//Barcode y = new Barcode ("5");
 	//Barcode z = new Barcode ("343f4");
-=======
+	//=======
 	System.out.println("compareTo: " + a.compareTo(b));
 	System.out.println("compareTo: " + b.compareTo(a));
 	System.out.println("compareTo: " + a.compareTo(a));
@@ -171,6 +171,6 @@ e.printStackTrace();
 	}catch(IllegalArgumentException e){
 	    e.printStackTrace();
 	}
->>>>>>> 24d25ca546ace02c85f562f1e854ae5b5444c0d6
+	//>>>>>>> 24d25ca546ace02c85f562f1e854ae5b5444c0d6
     }
 }

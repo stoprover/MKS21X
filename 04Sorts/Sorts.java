@@ -61,6 +61,9 @@ public class Sorts{
 	//system.currentTimeMillis(), don't measure sort if wrong; is a thing that you should use!!!!!!!!!!!!!!!!!!!!  
     public static String printArray (int[]data){
 	String sum = "[";
+	if (data.length == 0){
+	    return sum + "]";
+	}
 	for (int i = 0; i < data.length; i++){
 	    sum += data[i];
 	    if (i == data.length - 1){
@@ -93,6 +96,11 @@ public class Sorts{
 	bubbleSort(dairy);
 	System.out.println("dairy" + printArray(dairy));
 	System.out.println(name());
+	int[]fairy = new int[0];
+	//selectionSort(fairy);
+	//insertionSort(fairy);
+	bubbleSort(fairy);
+	System.out.println("fairy" + printArray(fairy));
     }
 }
 
